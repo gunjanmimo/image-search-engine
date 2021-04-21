@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>visual search</h1>
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="query_img" /> <br />
+        <input type="submit" />
+      </form>
+      <h2>query</h2>
+      {%if query_path %}
+      <img src="{{query_path}}" width="300px" />
+      {% endif %}
+      <h2>results:</h2>
+      {% for score in scores%}
+      <figure style="float: left; margin-right: 20px; margin-bottom: 20px">
+        {%if score[0]<1 %}
+        <img src="{{score[1]}}" height="200px" alt="" srcset="" />
+        <figcaption>{{score[0]}}</figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </body>
+</html>
